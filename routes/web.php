@@ -9,6 +9,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LocationController;
 
 Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 
@@ -51,3 +52,12 @@ Route::post('/checkout/room', [CheckoutController::class, 'checkoutroom'])->name
 
 //users
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/{id}/edit', [UserController::class, 'view'])->name('useredit.index');
+Route::put('/user/edit/store/{id}', [UserController::class, 'Update'])->name('useredit.store');
+Route::put('/user/edit/address/{id}', [UserController::class, 'Address'])->name('editaddress.store');
+
+//apis
+Route::get('/api/provinces', [LocationController::class, 'provinces']);
+Route::get('/api/cities/{provinceCode}', [LocationController::class, 'cities']);
+Route::get('/api/barangays/{cityCode}', [LocationController::class, 'barangays']);
