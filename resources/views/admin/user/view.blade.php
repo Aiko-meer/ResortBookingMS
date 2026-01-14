@@ -164,22 +164,23 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="" method="POST">
-                            @csrf
+                        <form id="emailForm">
+                            
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">To</label>
-                                <input type="email" class="form-control bg-light" value="{{ $user->email }}" readonly>
+                                <input type="email" class="form-control bg-light" value="{{ $user->email }}" id="to_email" readonly>
+                                <input type="text" id="sender" value=" {{ Auth::user()->email }}" id="sender" hidden>
                                 <small class="text-muted">This email will be sent to the user's registered address.</small>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Subject</label>
-                                <input type="text" name="email_subject" class="form-control" placeholder="Enter email subject" required>
+                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Enter email subject" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Message</label>
-                                <textarea name="email_body" class="form-control" rows="6" placeholder="Write your message here..." required></textarea>
+                                <textarea name="message" id="message" class="form-control" rows="6" placeholder="Write your message here..." required></textarea>
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -188,6 +189,30 @@
                                 </button>
                             </div>
                         </form>
+                        <script>
+document.getElementById('emailForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent page reload
+
+    emailjs.send(
+        'service_l1csmj8', // Replace with your EmailJS service ID
+        'template_z2mb2tl', // Replace with your EmailJS template ID
+        {
+            to_email: this.to_email.value,
+            subject: this.subject.value,
+            message: this.message.value,
+            sender: this.sender.value
+        }
+    ).then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Email sent successfully!');
+        document.getElementById('emailForm').reset();
+    }, function(error) {
+        console.log('FAILED...', error);
+        alert('Failed to send email. Please try again.');
+    });
+});
+</script>
+
                     </div>
                 </div>
 
@@ -404,6 +429,12 @@ confirmPassword.addEventListener('input', () => {
         confirmError.textContent = 'Passwords do not match.';
     }
 });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("hIV1zdcjFxV44vrqb"); // Replace with your EmailJS Public Key
+    })();
 </script>
 
 

@@ -11,7 +11,9 @@ class AdminController extends Controller
 {
     //
      public function index(){
-
+    if (!auth()->check()) {
+        return redirect()->route('login'); // redirect to login if not logged in
+    }
      $roomEarnings = Room_customer::sum('total_payment');
     $cottageEarnings = Cottage_customer::sum('total_payment');
     $totalEarnings = $roomEarnings + $cottageEarnings;

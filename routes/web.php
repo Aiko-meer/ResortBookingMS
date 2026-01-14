@@ -10,8 +10,10 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\Auth\LoginController;
+use Symfony\Component\Routing\Route as RoutingRoute;
 
-Route::get('/', [AdminController::class, 'index'])->name('admin.home');
+Route::get('/', [AdminController::class, 'index'])->name('admin.home')->middleware('auth');
 
 //cottage
 Route::get('/cottage', [CottageController::class, 'index'])->name('cottage.index');
@@ -61,3 +63,8 @@ Route::put('/user/edit/address/{id}', [UserController::class, 'Address'])->name(
 Route::get('/api/provinces', [LocationController::class, 'provinces']);
 Route::get('/api/cities/{provinceCode}', [LocationController::class, 'cities']);
 Route::get('/api/barangays/{cityCode}', [LocationController::class, 'barangays']);
+
+//login
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login/auth', [LoginController::class, 'login'])->name('login.auth');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

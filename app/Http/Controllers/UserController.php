@@ -3,18 +3,27 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+  
     //
     public function index(Request $request){
-          
+    
+      if (!auth()->check()) {
+        return redirect()->route('login'); // redirect to login if not logged in
+    }
         $search = $request->search;
 
-    $users = User::when($search, function ($query, $search) {
-        $query->where('first_name', 'LIKE', "%{$search}%")
+    $users = User::where('id', '!=', Auth::id())
+    ->when($search, function ($query, $search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('first_name', 'LIKE', "%{$search}%")
               ->orWhere('last_name', 'LIKE', "%{$search}%");
-    })->get();
+        });
+    })
+    ->get();
           
     return view('admin.user.table', compact('users'));
        

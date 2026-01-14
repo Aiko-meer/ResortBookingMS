@@ -14,6 +14,9 @@ class BookController extends Controller
     //
     public function index(Request $request)
     {
+        if (!auth()->check()) {
+        return redirect()->route('login'); // redirect to login if not logged in
+    }
          $search = $request->search;
 
    $rooms = Room_customer::with('room')->get();

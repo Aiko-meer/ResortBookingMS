@@ -13,6 +13,9 @@ class CottageController extends Controller
     //
     public function index(Request $request)
     {
+        if (!auth()->check()) {
+        return redirect()->route('login'); // redirect to login if not logged in
+    }
         // Get the last room number
     $lastRoom = Cottage::orderBy('id', 'desc')->first();
 

@@ -13,6 +13,9 @@ class RoomController extends Controller
     //
     public function index()
     {
+        if (!auth()->check()) {
+        return redirect()->route('login'); // redirect to login if not logged in
+    }
         // Get the last room number
     $lastRoom = Room::orderBy('id', 'desc')->first();
 
