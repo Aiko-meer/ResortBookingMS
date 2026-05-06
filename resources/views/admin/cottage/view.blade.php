@@ -124,7 +124,7 @@
                                                                                                                 </button>
 
                                                                                                                 <ul>
-                                                                                                                    @foreach($otherCharges as $charge)
+                                                                                                                    @foreach($otherCharges ?? [] as $charge)
                                                                                                                         <li>{{ $charge['description'] }}: ₱{{ $charge['amount'] }}</li>
                                                                                                                     @endforeach
                                                                                                                 </ul>

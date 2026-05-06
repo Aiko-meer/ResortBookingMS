@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Cottage;
 use App\Models\Room_customer; 
 use App\Models\Room;    
 use Illuminate\Http\Request;
@@ -63,11 +65,10 @@ class RoomcustomerController extends Controller
 
     ]);
 
-    // Update the cottage status to 1 (reserved)
-   $cottage = Room::find($request->cottage_id);
+  $cottage = Room::find($request->cottage_id);
 
-if ($cottage && $cottage->status == 2) {
-    $cottage->status = 1; // change to reserved
+if ($request->room_status == 2) {
+    $cottage->status = 1;
     $cottage->save();
 }
 

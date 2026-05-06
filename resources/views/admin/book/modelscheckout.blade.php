@@ -1,7 +1,7 @@
 <!-- Checkout Modal -->
 <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <form id="" method="POST" action="">
+        <form id="" method="POST" action="{{ route('checkout.cottage') }}">
             @csrf
             <input type="hidden" name="cottage_id" id="checkout_cottage_id">
             <div class="modal-content">
@@ -16,7 +16,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Customer Name</label>
                             <input type="text" id="checkout_customer_name" class="form-control" readonly>
-                            <input type="text" >
+                           
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Cottage Number</label>

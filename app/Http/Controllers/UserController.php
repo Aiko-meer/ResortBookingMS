@@ -10,10 +10,10 @@ class UserController extends Controller
   
     //
     public function index(Request $request){
-    
-      if (!auth()->check()) {
+    if (!auth()->check()) {
         return redirect()->route('login'); // redirect to login if not logged in
     }
+      
         $search = $request->search;
 
     $users = User::where('id', '!=', Auth::id())
@@ -63,7 +63,7 @@ class UserController extends Controller
         'barangay' =>$request->barangay,
         'user_type' => $request->user_type,
         'password' => Hash::make($request->password),
-        'status'=> 0,
+        'status'=> 1,
         ]);
 
        return redirect()->back()->with('success', 'User added successfully!');
@@ -128,5 +128,13 @@ class UserController extends Controller
     return redirect()->route('useredit.index')->with('success', 'User Address updated successfully!');
 
     }
+
+    public function destroy($id)
+{
+    $data = User::findOrFail($id);
+    $data->delete();
+
+    return redirect()->back()->with('success', 'Record deleted successfully.');
+}
 
 }

@@ -81,4 +81,35 @@ class CheckoutController extends Controller
 
                 return back()->with('success', 'Customer successfully checked out.');
             }
+
+    public function checkoutcottage(Request $request){
+         {
+                $request->validate([
+                    'cottage_id' => 'required',
+                ]);
+
+                // Find booking
+                $booking = Cottage_customer::findOrFail($request->cottage_id);
+
+                $today = now()->format('Y-m-d');  // current date (YYYY-MM-DD)
+
+                // If check_out date is NOT today → update it
+                if ($booking->check_out != $today) {
+                    $booking->check_out = $today;
+                }
+
+                // Mark as checked out
+                $booking->status = '3';
+                $booking->save();
+
+                // Free the cottage
+                $cottage = Cottage::find($booking->room_id);
+                if ($cottage) {
+                    $cottage->status = '0';
+                    $cottage->save();
+                }
+
+                return back()->with('success', 'Customer successfully checked out.');
+            }
+    }
 }

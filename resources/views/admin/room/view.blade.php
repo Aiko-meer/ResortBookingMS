@@ -731,6 +731,17 @@ $(document).ready(function() {
 
     otherChargesContainer.on('input', calculateTotal);
 
+    
+
+    // Event listeners
+    checkIn.on('change', calculateTotal);
+    checkOut.on('change', calculateTotal);
+
+    // Initial calculation
+    calculateTotal();
+});
+</script>
+<script>
     // Fetch unavailable dates for this Room
     const unavailableDates = @json($unavailableDates); // Array of yyyy-mm-dd strings from Room_customer
 
@@ -762,16 +773,7 @@ $(document).ready(function() {
             }, 0);
         }
     });
-
-    // Event listeners
-    checkIn.on('change', calculateTotal);
-    checkOut.on('change', calculateTotal);
-
-    // Initial calculation
-    calculateTotal();
-});
 </script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 

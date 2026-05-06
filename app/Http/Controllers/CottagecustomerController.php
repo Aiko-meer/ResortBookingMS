@@ -67,7 +67,7 @@ class CottagecustomerController extends Controller
 
      $cottage = Cottage::find($request->cottage_id);
 
-if ($cottage && $cottage->status == 2) {
+if ($cottage && $cottage->status == 0) {
     $cottage->status = 1; // change to reserved
     $cottage->save();
 }

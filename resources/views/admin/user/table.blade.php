@@ -118,7 +118,7 @@
                 <!-- Edit Button -->
                 <a href="{{ route('useredit.index', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
                 <!-- Delete Button -->
-                <form action="" method="POST" style="display:inline-block;">
+                <form action="{{ route('useredit.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>

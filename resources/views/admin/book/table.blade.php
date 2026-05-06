@@ -102,7 +102,12 @@
                                                                         @if ($room->status == 0)
                                                                             <span class="badge bg-secondary"><i class="bi bi-hourglass-split"></i> Pending</span>
                                                                         @elseif ($room->status == 1)
+                                                                             @if(\Carbon\Carbon::parse($room->check_in)->isToday())
                                                                             <span class="badge bg-primary"><i class="bi bi-calendar-check-fill"></i> Booked</span>
+                                                                            @endif
+                                                                             @if(\Carbon\Carbon::parse($room->check_in)->isPast())
+                                                                            <span class="badge bg-danger"><i class="bi bi-calendar-check-fill"></i> Failed</span>
+                                                                             @endif
                                                                         @endif
                                                                     </td>
 
@@ -126,6 +131,13 @@
                                                                                     @csrf
                                                                                     <button type="submit" class="btn btn-success btn-sm">Check in</button>
                                                                                 </form>
+                                                                            @endif
+                                                                            @if(\Carbon\Carbon::parse($room->check_in)->isPast())
+                                                                             <form action="{{ route('roombooking.destroy', $room->id) }}" method="POST" class="d-inline">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this booking?')">Delete</button>
+                                                                            </form>
                                                                             @endif
                                                                         @endif
 
@@ -272,6 +284,8 @@
                         <p class="card-text mb-1"><strong>Address:</strong> <span id="cottageCustomerAddress"></span></p>
                         <p class="card-text mb-1"><strong>Contact:</strong> <span id="cottageCustomerContact"></span></p>
                         <p class="card-text mb-1"><strong>Email:</strong> <span id="cottageCustomerEmail"></span></p>
+                         <p class="card-text mb-1"><strong>Book Type:</strong> <span id="booktype"></span></p>
+                          <p class="card-text mb-1"><strong>Days:</strong> <span id="days"></span></p>
                         <p class="card-text mb-1"><strong>Check-in:</strong> <span id="cottageCheckIn"></span></p>
                         <p class="card-text mb-1"><strong>Check-out:</strong> <span id="cottageCheckOut"></span></p>
 
@@ -355,6 +369,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('cottageCustomerAddress').textContent = cottage.customer_address || 'N/A';
             document.getElementById('cottageCustomerContact').textContent = cottage.customer_contact || 'N/A';
             document.getElementById('cottageCustomerEmail').textContent = cottage.customer_email || 'N/A';
+             document.getElementById('booktype').textContent = cottage.booking_type || 'N/A';
+             document.getElementById('days').textContent = cottage.days_of_stay || 'N/A';
 
             // Check-in / Check-out times
             const checkInTime = cottage.check_in_time ? new Date('1970-01-01T' + cottage.check_in_time).toLocaleTimeString([], { hour: '2-digit', minute:'2-digit', hour12: true }) : '';

@@ -11,9 +11,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ClientController;
 use Symfony\Component\Routing\Route as RoutingRoute;
-
-Route::get('/', [AdminController::class, 'index'])->name('admin.home')->middleware('auth');
+Route::get('/', [ClientController::class, 'index'])->name('client.home');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.home')->middleware('auth');
 
 //cottage
 Route::get('/cottage', [CottageController::class, 'index'])->name('cottage.index');
@@ -51,6 +52,7 @@ Route::post('/cottagecheckin/{id}', [BookController::class, 'cottagecheckin'])->
 //checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout/room', [CheckoutController::class, 'checkoutroom'])->name('checkout.room');
+Route::post('/checkout/cottage', [CheckoutController::class, 'checkoutcottage'])->name('checkout.cottage');
 
 //users
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -58,6 +60,7 @@ Route::post('/user/store', [UserController::class, 'store'])->name('user.store')
 Route::get('/user/{id}/edit', [UserController::class, 'view'])->name('useredit.index');
 Route::put('/user/edit/store/{id}', [UserController::class, 'Update'])->name('useredit.store');
 Route::put('/user/edit/address/{id}', [UserController::class, 'Address'])->name('editaddress.store');
+Route::delete('/user/destroy/{id}', [UserController::class, 'destroy'])->name('useredit.destroy');
 
 //apis
 Route::get('/api/provinces', [LocationController::class, 'provinces']);
@@ -68,3 +71,12 @@ Route::get('/api/barangays/{cityCode}', [LocationController::class, 'barangays']
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/auth', [LoginController::class, 'login'])->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+//client 
+Route::get('/client', [ClientController::class, 'index'])->name('client');
+Route::get('/client/roombook/{id}', [ClientController::class, 'room'])->name('client.room');
+Route::get('/client/cottagebook/{id}', [ClientController::class, 'cottage'])->name('client.cottage');
+Route::post('/client/roombook/reserved/', [ClientController::class, 'roombook'])->name('client.roombook');
+Route::post('/client/cottagebook/reserved/', [ClientController::class, 'cottagebook'])->name('client.cottagebook');
+Route::get('/client/rooms', [ClientController::class, 'rooms'])->name('client.rooms');
+Route::get('/client/cottages', [ClientController::class, 'cottages'])->name('client.cottages');

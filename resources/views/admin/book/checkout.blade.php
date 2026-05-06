@@ -80,9 +80,9 @@
                                                     </thead>
                                                     <tbody>
                                                         @php
-    $today = \Carbon\Carbon::today()->format('Y-m-d');
-@endphp
-                                                       @foreach ($rooms as $room)
+                                                            $today = \Carbon\Carbon::today()->format('Y-m-d');
+                                                        @endphp
+                                                       @forelse ($rooms as $room)
                                                             @if ($room->status == 2)
                                                                 <!-- Table Row -->
                                                                <tr class="{{ \Carbon\Carbon::parse($room->check_out)->isToday() ? 'table-warning' : '' }}">
@@ -144,7 +144,13 @@
                                                                     </td>
                                                                 </tr>
                                                             @endif
-                                                        @endforeach
+                                                            @empty
+                                                              <tr>
+        <td colspan="6" class="text-center text-muted">
+            No data available
+        </td>
+    </tr>
+                                                        @endforelse
                                                     </tbody>
 
                                                 </table>

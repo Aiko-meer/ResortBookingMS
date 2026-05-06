@@ -169,7 +169,7 @@
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">To</label>
                                 <input type="email" class="form-control bg-light" value="{{ $user->email }}" id="to_email" readonly>
-                                <input type="text" id="sender" value=" {{ Auth::user()->email }}" id="sender" hidden>
+                                <input type="text" id="sender" value=" zedcervantes4@gmail.com" id="sender" hidden>
                                 <small class="text-muted">This email will be sent to the user's registered address.</small>
                             </div>
 

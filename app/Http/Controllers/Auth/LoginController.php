@@ -69,6 +69,6 @@ public function login(Request $request)
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login.index')->with('success', 'Logged out successfully.');
+        return redirect()->route('login')->with('success', 'Logged out successfully.');
     }
 }
