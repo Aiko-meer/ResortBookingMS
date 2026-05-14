@@ -28,8 +28,7 @@
                 <div class="section-header">
                     <h2>Our Cottage</h2>
                     <p>
-                        The Cottage are designed to provide comfort and relaxation, featuring cozy interiors and essential modern amenities. Each room offers a clean, inviting space where guests can unwind, with options suited for individuals, couples, or groups. With a balance of simplicity and convenience, the accommodations ensure a pleasant and restful stay.
-                    </p>
+                      
                 </div>
                 <div class="row">
                     <div class="col-md-12">
