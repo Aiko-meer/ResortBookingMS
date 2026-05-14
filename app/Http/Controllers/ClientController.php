@@ -132,41 +132,63 @@ $bookings = Cottage_customer::where('cottage_id', $id)
 
      public function cottagebook(Request $request){
 
-   $request->validate([
-        'cottage_id' => 'required|exists:cottages,id',
-        'customer_name' => 'required|string|max:255',
-        'customer_contact' => 'required|string|max:50',
-        'customer_address' => 'required|string|max:255',
-        'customer_email' => 'required|email|max:255',
-        'booking_type' => 'required|in:overnight,daytime',
-        'check_in' => 'required|date',
-        'check_out' => 'nullable|date',
-        'check_in_time' => 'required|date_format:H:i',
-        'check_out_time' => 'nullable|date_format:H:i',
-        'days_of_stay' => 'required|integer|min:0',
-        'total_payment' => 'required|numeric|min:0',
-    ]);
+  $request->validate([
+    'cottage_id' => 'required|exists:cottages,id',
+    'customer_name' => 'required|string|max:255',
+    'customer_contact' => 'required|string|max:50',
+    'customer_address' => 'required|string|max:255',
+    'customer_email' => 'required|email|max:255',
+    'booking_type' => 'required|in:overnight,daytime',
+    'check_in' => 'required|date',
+    'check_out' => 'nullable|date',
+    'check_in_time' => 'required|date_format:H:i',
+    'check_out_time' => 'nullable|date_format:H:i',
+    'days_of_stay' => 'required|integer|min:0',
+    'total_payment' => 'required|numeric|min:0',
+]);
 
-       $booking = Cottage_customer::create([
-        'cottage_id' => $request->cottage_id,
-        'customer_name' => $request->customer_name,
-        'customer_contact' => $request->customer_contact,
-        'customer_address' => $request->customer_address,
-        'customer_email' => $request->customer_email,
-        'booking_type' => $request->booking_type,
-        'type' => 'cottage',
-        'check_in' => $request->check_in,
-        'check_out' => $request->booking_type == 'daytime' ? $request->check_in : $request->check_out,
-        'check_in_time' => $request->check_in_time,
-        'check_out_time' => $request->check_out_time,
-        'days_of_stay' => $request->days_of_stay,
-        'total_payment' => $request->total_payment,
-        'status'=>'0',
+$checkOut = $request->booking_type == 'daytime'
+    ? $request->check_in
+    : $request->check_out;
 
-    ]);
+// Check duplicate booking with status = 1
+$existingBooking = Cottage_customer::where('cottage_id', $request->cottage_id)
+    ->where(function ($query) use ($request, $checkOut) {
 
-         
-      return redirect()->route('client')
+        $query->whereBetween('check_in', [$request->check_in, $checkOut])
+              ->orWhereBetween('check_out', [$request->check_in, $checkOut])
+              ->orWhere(function ($q) use ($request, $checkOut) {
+                  $q->where('check_in', '<=', $request->check_in)
+                    ->where('check_out', '>=', $checkOut);
+              });
+
+    })
+    ->exists();
+
+if ($existingBooking) {
+    return back()
+        ->withInput()
+        ->with('error', 'This cottage is already reserved on the selected date.');
+}
+
+$booking = Cottage_customer::create([
+    'cottage_id' => $request->cottage_id,
+    'customer_name' => $request->customer_name,
+    'customer_contact' => $request->customer_contact,
+    'customer_address' => $request->customer_address,
+    'customer_email' => $request->customer_email,
+    'booking_type' => $request->booking_type,
+    'type' => 'cottage',
+    'check_in' => $request->check_in,
+    'check_out' => $checkOut,
+    'check_in_time' => $request->check_in_time,
+    'check_out_time' => $request->check_out_time,
+    'days_of_stay' => $request->days_of_stay,
+    'total_payment' => $request->total_payment,
+    'status' => '0',
+]);
+
+return redirect()->route('client')
     ->with('success', 'Booking confirmed successfully!');
-    }
+}
 }

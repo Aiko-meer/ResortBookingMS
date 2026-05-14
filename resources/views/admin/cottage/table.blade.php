@@ -79,7 +79,6 @@
                                                          <thead class="thead-light">
                                                                 <tr>
                                                                     <th>Room #</th>
-                                                                    <th>Room Type</th>
                                                                     <th>Price Day</th>
                                                                     <th>Price Over Night</th>
                                                                     <th>Status</th>
@@ -90,7 +89,6 @@
                                                             @foreach ($rooms as $room)
                                                                 <tr>
                                                                     <td>{{ $room->room_number }}</td>
-                                                                    <td>{{ $room->room_type }}</td>
                                                                     <td>₱{{ number_format($room->price_day, 2) }}</td>
                                                                      <td>₱{{ number_format($room->price_ov, 2) }}</td>
 
@@ -151,20 +149,7 @@
                                                                 </div>
 
                                                                 <!-- Room Type -->
-                                                                <div class="mb-3">
-                                                                    <label class="form-label fw-semibold">Room Type</label>
-                                                                    <select id="cottageType" name="room_type" class="form-select" required>
-                                                                        <option disabled selected>Select type</option>
-                                                                        <option value="Standard Cottage" data-capacity="4">Standard Cottage</option>
-                                                                        <option value="Deluxe Cottage" data-capacity="6">Deluxe Cottage</option>
-                                                                        <option value="Family Cottage" data-capacity="10">Family Cottage</option>
-                                                                        <option value="Couple Cottage" data-capacity="2">Couple Cottage</option>
-                                                                        <option value="Group Cottage" data-capacity="15">Group Cottage</option>
-                                                                        <option value="VIP Cottage" data-capacity="12">VIP Cottage</option>
-                                                                        <option value="Premium Cottage" data-capacity="8">Premium Cottage</option>
-                                                                        <option value="Executive Cottage" data-capacity="10">Executive Cottage</option>
-                                                                    </select>
-                                                                </div>
+                                                               
 
                                                                  <!-- Description -->
                                                                 <div class="mb-3">
@@ -197,10 +182,7 @@
                                                                     <label class="form-label fw-semibold">Amenities</label>
                                                                     <div class="row">
                                                                         <div class="col-md-6">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" name="amenities[]" value="Air Conditioned" id="amenityAC">
-                                                                                <label class="form-check-label" for="amenityAC">Air Conditioned</label>
-                                                                            </div>
+                                                                            
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="checkbox" name="amenities[]" value="Electric Fan" id="amenityEF">
                                                                                 <label class="form-check-label" for="amenityEF">Electric Fan</label>
@@ -219,10 +201,7 @@
                                                                                 <input class="form-check-input" type="checkbox" name="amenities[]" value="LED Lights / Ambient Lighting" id="amenityBreakfast">
                                                                                 <label class="form-check-label" for="amenityBreakfast">LED Lights / Ambient Lighting</label>
                                                                             </div>
-                                                                             <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" name="amenities[]" value="Private Bathroom" id="amenityShower">
-                                                                                <label class="form-check-label" for="amenityShower">Private Bathroom</label>
-                                                                            </div>
+                                                                           
                                                                         </div>
                                                                     </div>
                                                                 </div>

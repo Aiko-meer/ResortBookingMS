@@ -38,13 +38,7 @@
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
-                              <li>
-                                  <a href="{{route('room.index')}}" class="waves-effect waves-dark">
-                                      <span class="pcoded-micon"><i class="fa fa-bed"></i><b>FC</b></span>
-                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Room</span>
-                                      <span class="pcoded-mcaret"></span>
-                                  </a>
-                              </li>
+                              
         
                           </ul>
         

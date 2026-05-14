@@ -37,10 +37,7 @@
             <nav class="main-menu top-menu">
                 <ul>
                     <li ><a href="{{ route('client') }}">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="{{ route('client.rooms') }}">Rooms</a></li>
                     <li><a href="{{ route('client.cottages') }}">Cottage</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
         </header>

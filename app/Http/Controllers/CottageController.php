@@ -81,7 +81,6 @@ foreach ($bookings as $booking) {
         // Validate input
         $request->validate([
             'room_number' => 'required|string|unique:cottages,room_number',
-            'room_type' => 'required|string',
             'capacity_adult' => 'required|integer|min:1',
             'price_day' => 'required|numeric|min:0',
              'price_ov' => 'required|numeric|min:0',
@@ -93,7 +92,6 @@ foreach ($bookings as $booking) {
         // Create cottage
         $cottage = Cottage::create([
             'room_number' => $request->room_number,
-            'room_type' => $request->room_type,
             'capacity_adult' => $request->capacity_adult,
             'price_day' => $request->price_day,
             'price_ov' => $request->price_ov,
