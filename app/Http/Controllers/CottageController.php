@@ -119,7 +119,6 @@ foreach ($bookings as $booking) {
     $cottage = Cottage::findOrFail($id);
 
     $validated = $request->validate([
-        'room_type' => 'required',
         'description' => 'required',
         'capacity_adult' => 'required|integer',
         'price_day' => 'required|numeric|min:0',
@@ -129,7 +128,6 @@ foreach ($bookings as $booking) {
     ]);
 
     // Update simple fields
-    $cottage->room_type = $request->room_type;
     $cottage->description = $request->description;
     $cottage->capacity_adult = $request->capacity_adult;
     $cottage->price_day = $request->price_day;

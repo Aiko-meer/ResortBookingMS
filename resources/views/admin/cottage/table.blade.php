@@ -183,10 +183,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" name="amenities[]" value="Electric Fan" id="amenityEF">
-                                                                                <label class="form-check-label" for="amenityEF">Electric Fan</label>
-                                                                            </div>
+                                                                           
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="checkbox" name="amenities[]" value="Free WiFi" id="amenityWifi">
                                                                                 <label class="form-check-label" for="amenityWifi">Free WiFi</label>

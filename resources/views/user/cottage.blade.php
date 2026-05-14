@@ -28,7 +28,7 @@
                 <div class="section-header">
                     <h2>Our Cottage</h2>
                     <p>
-                        The rooms are designed to provide comfort and relaxation, featuring cozy interiors and essential modern amenities. Each room offers a clean, inviting space where guests can unwind, with options suited for individuals, couples, or groups. With a balance of simplicity and convenience, the accommodations ensure a pleasant and restful stay.
+                        The Cottage are designed to provide comfort and relaxation, featuring cozy interiors and essential modern amenities. Each room offers a clean, inviting space where guests can unwind, with options suited for individuals, couples, or groups. With a balance of simplicity and convenience, the accommodations ensure a pleasant and restful stay.
                     </p>
                 </div>
                 <div class="row">
@@ -57,15 +57,11 @@
                                     </ul>
                                     <ul class="room-icon">
                                         <li class="icon-1"></li>
-                                        <li class="icon-2"></li>
-                                        <li class="icon-3"></li>
-                                        <li class="icon-4"></li>
-                                        <li class="icon-5"></li>
-                                        <li class="icon-6"></li>
+                                        
                                         <li class="icon-7"></li>
                                         <li class="icon-8"></li>
                                         <li class="icon-9"></li>
-                                        <li class="icon-10"></li>
+                                      
                                     </ul>
                                 </div>
                             </div>
@@ -85,7 +81,7 @@
                         <hr>
                         @endforeach
                     </div>
-                    <a href="{{ route('client.rooms') }}">See more..</a>
+                   
                 </div>
             </div>
         </div>

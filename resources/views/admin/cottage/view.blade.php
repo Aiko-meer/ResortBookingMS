@@ -63,7 +63,7 @@
                                                                             <!-- Room Info -->
                                                                             <div class="col-md-7">
                                                                                 <div class="card-body">
-                                                                                    <h3 class="card-title">{{$cottage->room_type}}</h3>
+                                                                                    
 
                                                                                     <h4 class="text-primary">₱{{$cottage->price_day}} Day</h4>
                                                                                     <h4 class="text-primary">₱{{$cottage->price_ov}} Overnight</h4>
@@ -559,53 +559,7 @@
                                                                     <input type="text" name="room_number" class="form-control" value="{{$cottage->room_number}}" readonly>
                                                                 </div>
 
-                                                                <!-- Room Type -->
-                                                                <div class="mb-3">
-                                                                    <label class="form-label fw-semibold">Room Type</label>
-                                                                    <select id="cottageType" name="room_type" class="form-select" required>
-                                                                        <option disabled>Select type</option>
-
-                                                                        <option value="Standard Cottage" data-capacity="4"
-                                                                            {{ $cottage->room_type == 'Standard Cottage' ? 'selected' : '' }}>
-                                                                            Standard Cottage
-                                                                        </option>
-
-                                                                        <option value="Deluxe Cottage" data-capacity="6"
-                                                                            {{ $cottage->room_type == 'Deluxe Cottage' ? 'selected' : '' }}>
-                                                                            Deluxe Cottage
-                                                                        </option>
-
-                                                                        <option value="Family Cottage" data-capacity="10"
-                                                                            {{ $cottage->room_type == 'Family Cottage' ? 'selected' : '' }}>
-                                                                            Family Cottage
-                                                                        </option>
-
-                                                                        <option value="Couple Cottage" data-capacity="2"
-                                                                            {{ $cottage->room_type == 'Couple Cottage' ? 'selected' : '' }}>
-                                                                            Couple Cottage
-                                                                        </option>
-
-                                                                        <option value="Group Cottage" data-capacity="15"
-                                                                            {{ $cottage->room_type == 'Group Cottage' ? 'selected' : '' }}>
-                                                                            Group Cottage
-                                                                        </option>
-
-                                                                        <option value="VIP Cottage" data-capacity="12"
-                                                                            {{ $cottage->room_type == 'VIP Cottage' ? 'selected' : '' }}>
-                                                                            VIP Cottage
-                                                                        </option>
-
-                                                                        <option value="Premium Cottage" data-capacity="8"
-                                                                            {{ $cottage->room_type == 'Premium Cottage' ? 'selected' : '' }}>
-                                                                            Premium Cottage
-                                                                        </option>
-
-                                                                        <option value="Executive Cottage" data-capacity="10"
-                                                                            {{ $cottage->room_type == 'Executive Cottage' ? 'selected' : '' }}>
-                                                                            Executive Cottage
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
+                                                              
 
 
                                                                  <!-- Description -->
@@ -642,17 +596,9 @@
 
                                                                         <div class="col-md-6">
 
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" name="amenities[]" value="Air Conditioned" id="amenityAC"
-                                                                                    {{ isset($amenities) && in_array('Air Conditioned', $amenities) ? 'checked' : '' }}>
-                                                                                <label class="form-check-label" for="amenityAC">Air Conditioned</label>
-                                                                            </div>
+                                                                           
 
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" name="amenities[]" value="Electric Fan" id="amenityEF"
-                                                                                    {{ isset($amenities) && in_array('Electric Fan', $amenities) ? 'checked' : '' }}>
-                                                                                <label class="form-check-label" for="amenityEF">Electric Fan</label>
-                                                                            </div>
+                                                                          
 
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="checkbox" name="amenities[]" value="Free WiFi" id="amenityWiFi"
@@ -676,11 +622,7 @@
                                                                                 <label class="form-check-label" for="amenityLED">LED Lights / Ambient Lighting</label>
                                                                             </div>
 
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" name="amenities[]" value="Private Bathroom" id="amenityPB"
-                                                                                    {{ isset($amenities) && in_array('Private Bathroom', $amenities) ? 'checked' : '' }}>
-                                                                                <label class="form-check-label" for="amenityPB">Private Bathroom</label>
-                                                                            </div>
+                                                                           
 
                                                                         </div>
 

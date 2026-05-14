@@ -7,23 +7,30 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{asset('assets/user/img/slider/header-slider-1.jpg')}}" alt="Royal Hotel">
+                    <img src="{{asset('assets/user/img/slider/kz-1.jpg')}}" alt="Royal Hotel">
                     <div class="carousel-caption">
                         <h1 class="animated fadeInRight">Kz Wisa</h1>
                     </div>
                 </div>
                 
                 <div class="carousel-item">
-                    <img src="{{asset('assets/user/img/slider/header-slider-2.jpg')}}" alt="Royal Hotel">
+                    <img src="{{asset('assets/user/img/slider/kz-2.jpg')}}" alt="Royal Hotel">
                     <div class="carousel-caption">
-                        <h1 class="animated fadeInLeft">Kz Wina</h1>
+                        <h1 class="animated fadeInLeft">Kz Wisa</h1>
                     </div>
                 </div>
 
                 <div class="carousel-item">
-                    <img src="{{asset('assets/user/img/slider/header-slider-3.jpg')}}" alt="Royal Hotel">
+                    <img src="{{asset('assets/user/img/slider/kz-3.jpg')}}" alt="Royal Hotel">
                     <div class="carousel-caption">
-                        <h1 class="animated fadeInRight">Kz Glaiza</h1>
+                        <h1 class="animated fadeInLeft">Kz Wisa</h1>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{asset('assets/user/img/slider/kz-4.jpg')}}" alt="Royal Hotel">
+                    <div class="carousel-caption">
+                        <h1 class="animated fadeInRight">Kz wisa</h1>
                     </div>
                 </div>
             </div>
